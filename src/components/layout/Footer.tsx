@@ -1,82 +1,83 @@
-import { Clock, MapPin, Phone } from "lucide-react";
+import { cacheLife } from "next/cache";
 import Link from "next/link";
 
-import { ContactActions } from "@/components/layout/ContactActions";
 import { Container } from "@/components/ui/Container";
-import { bookingHref, primaryNav } from "@/config/navigation";
+import { Devanagari } from "@/components/ui/Devanagari";
+import { footerNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { telHref } from "@/lib/contact";
+import { mailtoHref, telHref } from "@/lib/contact";
 
 const { contact } = siteConfig;
 
+const headingStyles =
+  "mb-[0.8rem] font-sans text-[0.75rem] font-bold tracking-[0.14em] uppercase opacity-70";
+
+const linkStyles = "opacity-85 hover:opacity-100";
+
 async function CurrentYear() {
   "use cache";
+  cacheLife("days");
   return <>{new Date().getFullYear()}</>;
 }
 
 export function Footer() {
   return (
-    <footer data-tone="dark" className="bg-cocoa-deep text-ivory">
-      <div aria-hidden="true" className="kasavu" />
+    <footer data-tone="band" className="bg-band pt-14 pb-8 text-[0.92rem] text-band-fg">
+      <Container>
+        <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-8 max-[761px]:grid-cols-1">
+          <div>
+            <p className="font-display text-[1.6rem] leading-[normal]">
+              {siteConfig.name}
+            </p>
+            <p className="mt-[0.6rem] max-w-[44ch] opacity-80">
+              {siteConfig.footerBlurb}
+            </p>
+            <p className="mt-4 text-[1.2rem] text-oil-text">
+              <Devanagari lang="sa">लोकाः समस्ताः सुखिनो भवन्तु</Devanagari>
+            </p>
+            <p className="text-[0.85rem] opacity-70">
+              May all beings everywhere be well.
+            </p>
+          </div>
 
-      <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-20">
-        <div className="lg:col-span-6">
-          <p className="max-w-md font-display text-display-md">
-            Speak to us before you book. We will help you choose.
-          </p>
-          <ContactActions tone="dark" className="mt-8" />
-        </div>
-
-        <nav aria-label="Footer" className="lg:col-span-2">
-          <h2 className="font-sans text-sm font-medium text-sage">Explore</h2>
-          <ul className="mt-4 space-y-1">
-            {[...primaryNav, { label: "Book a Session", href: bookingHref }].map(
-              (item) => (
+          <nav aria-label="Footer">
+            <h2 className={headingStyles}>Explore</h2>
+            <ul className="grid gap-[0.4rem]">
+              {footerNav.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="link-underline inline-block py-1"
-                  >
+                  <Link href={item.href} className={linkStyles}>
                     {item.label}
                   </Link>
                 </li>
-              ),
-            )}
-          </ul>
-        </nav>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="lg:col-span-4">
-          <h2 className="font-sans text-sm font-medium text-sage">Visit</h2>
-          <ul className="mt-4 space-y-4">
-            <li className="flex gap-3">
-              <Phone aria-hidden="true" className="mt-1 size-4 shrink-0" />
-              <a href={telHref} className="link-underline">
-                {contact.phoneDisplay}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0" />
-              <span>
-                {contact.address ?? "Address coming soon. Call us for directions."}
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <Clock aria-hidden="true" className="mt-1 size-4 shrink-0" />
-              <span>
-                {contact.hours ?? "Please call to confirm our opening hours."}
-              </span>
-            </li>
-          </ul>
+          <div>
+            <h2 className={headingStyles}>Contact</h2>
+            <ul className="grid gap-[0.4rem]">
+              <li>{contact.address}</li>
+              <li>
+                <a href={telHref} className={linkStyles}>
+                  {contact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a href={mailtoHref} className={linkStyles}>
+                  {contact.email}
+                </a>
+              </li>
+              <li>Open daily, {contact.hours}</li>
+            </ul>
+          </div>
         </div>
-      </Container>
 
-      {/* The extra space on small screens keeps this text clear of the WhatsApp button. */}
-      <Container className="pb-24 text-sm text-sand md:pb-8">
-        <div className="space-y-2 border-t border-line-dark pt-6">
-          <p className="max-w-3xl">{siteConfig.disclaimer}</p>
-          <p>
-            © <CurrentYear /> {siteConfig.name}. All rights reserved.
-          </p>
+        {/* Below this width, the extra space keeps the text clear of the WhatsApp button. */}
+        <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[1432px]:pb-10">
+          <p className="max-w-[70ch]">{siteConfig.disclaimer}</p>
+          <span>
+            © <CurrentYear /> {siteConfig.name} · {siteConfig.domain}
+          </span>
         </div>
       </Container>
     </footer>

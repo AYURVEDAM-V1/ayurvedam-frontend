@@ -1,123 +1,95 @@
 "use client";
 
-import { Menu, Phone } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useCallback, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { MobileMenu } from "@/components/layout/MobileMenu";
-import { Wordmark } from "@/components/layout/Wordmark";
+import { Brand } from "@/components/layout/Brand";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import {
-  bookingHref,
-  isActivePath,
-  navLeft,
-  navRight,
-  type NavItem,
-} from "@/config/navigation";
+import { bookingHref, primaryNav } from "@/config/navigation";
 import { cn } from "@/lib/cn";
-import { telHref } from "@/lib/contact";
 
-function subscribeToScroll(onChange: () => void) {
-  window.addEventListener("scroll", onChange, { passive: true });
-  return () => window.removeEventListener("scroll", onChange);
-}
+export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
-const getIsScrolled = () => window.scrollY > 24;
-const getIsScrolledOnServer = () => false;
+  const closeMenu = () => setIsOpen(false);
 
-type NavLinksProps = {
-  label: string;
-  items: NavItem[];
-  pathname: string;
-};
+  useEffect(() => {
+    if (!isOpen) return;
 
-function NavLinks({ label, items, pathname }: NavLinksProps) {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsOpen(false);
+      buttonRef.current?.focus();
+    };
+
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (panelRef.current?.contains(target)) return;
+      if (buttonRef.current?.contains(target)) return;
+      setIsOpen(false);
+    };
+
+    const closeOnHashChange = () => setIsOpen(false);
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    window.addEventListener("hashchange", closeOnHashChange);
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("pointerdown", closeOnOutsidePress);
+      window.removeEventListener("hashchange", closeOnHashChange);
+    };
+  }, [isOpen]);
+
   return (
-    <nav aria-label={label} className="hidden lg:block">
-      <ul className="flex items-center gap-7 xl:gap-9">
-        {items.map((item) => (
-          <li key={item.href}>
+    <header className="sticky top-[env(safe-area-inset-top,0px)] z-50 border-b border-line bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] backdrop-blur-[10px]">
+      <Container className="relative flex items-center justify-between gap-4 py-[0.9rem]">
+        <Brand />
+
+        <button
+          ref={buttonRef}
+          id="menu-button"
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls="nav-links"
+          onClick={() => setIsOpen((open) => !open)}
+          className="hidden min-h-11 min-w-11 cursor-pointer rounded-[10px] border-[1.5px] border-line bg-transparent px-[0.7rem] text-[0.9rem] font-bold text-ink max-[901px]:inline-block"
+        >
+          Menu
+        </button>
+
+        <nav
+          ref={panelRef}
+          id="nav-links"
+          aria-label="Main"
+          className={cn(
+            "items-center gap-[1.6rem] min-[901px]:flex max-[901px]:absolute max-[901px]:inset-x-0 max-[901px]:top-full max-[901px]:max-h-[calc(100dvh-5rem)] max-[901px]:flex-col max-[901px]:items-stretch max-[901px]:gap-0 max-[901px]:overflow-y-auto max-[901px]:border-b max-[901px]:border-line max-[901px]:bg-page max-[901px]:px-4 max-[901px]:pt-2 max-[901px]:pb-4",
+            isOpen ? "flex" : "hidden",
+          )}
+        >
+          {primaryNav.map((item) => (
             <Link
+              key={item.href}
               href={item.href}
-              aria-current={
-                isActivePath(pathname, item.href) ? "page" : undefined
-              }
-              className="link-underline inline-block py-1 text-[0.9375rem] leading-tight font-medium"
+              onClick={closeMenu}
+              className="text-[0.95rem] font-medium text-muted hover:text-ink max-[901px]:border-b max-[901px]:border-line max-[901px]:py-3"
             >
               {item.label}
             </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
-export function Header() {
-  const pathname = usePathname();
-  const menuRef = useRef<HTMLDialogElement>(null);
-  const closeMenu = useCallback(() => menuRef.current?.close(), []);
-
-  const isScrolled = useSyncExternalStore(
-    subscribeToScroll,
-    getIsScrolled,
-    getIsScrolledOnServer,
-  );
-
-  return (
-    <>
-      {/* Every page opens on a dark band, so the header starts transparent. */}
-      <header
-        data-tone={isScrolled ? undefined : "dark"}
-        className={cn(
-          "fixed inset-x-0 top-0 z-40 transition-colors duration-300 ease-soft",
-          isScrolled
-            ? "bg-ivory text-cocoa shadow-[0_1px_0_var(--color-line)]"
-            : "text-ivory",
-        )}
-      >
-        <Container className="grid h-header grid-cols-[1fr_auto_1fr] items-center gap-4">
-          <div className="flex items-center">
-            <button
-              type="button"
-              onClick={() => menuRef.current?.showModal()}
-              aria-label="Open menu"
-              aria-haspopup="dialog"
-              aria-controls="mobile-menu"
-              className="-ml-2.5 inline-flex size-11 items-center justify-center lg:hidden"
-            >
-              <Menu aria-hidden="true" className="size-6" />
-            </button>
-            <NavLinks label="Primary" items={navLeft} pathname={pathname} />
-          </div>
-
-          <Wordmark />
-
-          <div className="flex items-center justify-end gap-5 xl:gap-7">
-            <NavLinks label="Secondary" items={navRight} pathname={pathname} />
-            <a
-              href={telHref}
-              className="-mr-2.5 inline-flex min-h-11 min-w-11 items-center justify-center gap-2 text-[0.9375rem] leading-tight font-medium lg:mr-0"
-            >
-              <Phone aria-hidden="true" className="size-5 lg:size-4" />
-              <span className="sr-only lg:not-sr-only">Call Now</span>
-            </a>
-            <div className="hidden lg:block">
-              <Button
-                href={bookingHref}
-                size="sm"
-                variant={isScrolled ? "primary" : "inverse"}
-              >
-                Book a Session
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </header>
-
-      <MobileMenu ref={menuRef} pathname={pathname} onClose={closeMenu} />
-    </>
+          ))}
+          <Button
+            href={bookingHref}
+            onClick={closeMenu}
+            className="max-[901px]:mt-[0.8rem] max-[901px]:justify-center"
+          >
+            Book a session
+          </Button>
+        </nav>
+      </Container>
+    </header>
   );
 }
