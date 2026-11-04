@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+ * AYURVEDAM design tokens: "Kasavu & Laterite".
+ *
+ * Colours come from Kerala: kasavu ivory cloth, laterite stone, coir sand,
+ * dark teak and rain-washed sage.
+ *
+ * Contrast rule: terracotta is 3.33:1 on ivory and 3.80:1 on cocoa, so it is
+ * for decoration and large display type only. Use laterite for text and
+ * primary buttons on light backgrounds (5.35:1 on ivory, 4.57:1 on sand).
+ */
+@theme {
+  --color-ivory: #f7f3ea;
+  --color-sand: #eae1d3;
+  --color-cocoa: #302b26;
+  --color-cocoa-deep: #241f1b;
+  --color-muted: #655b51;
+  --color-terracotta: #b8745c;
+  --color-laterite: #9a4f36;
+  --color-laterite-deep: #7e3f2a;
+  --color-sage: #a7b5a0;
+  --color-line: #d8cdbb;
+  --color-line-dark: #4d453d;
+  --color-whatsapp: #0f7b6e;
+  --color-whatsapp-deep: #0c6358;
+
+  --text-display-xl: clamp(3rem, 1.9rem + 5.5vw, 7rem);
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.015em;
+  --text-display-lg: clamp(2.5rem, 1.85rem + 3.2vw, 4.75rem);
+  --text-display-lg--line-height: 1.05;
+  --text-display-lg--letter-spacing: -0.01em;
+  --text-display-md: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --text-display-md--line-height: 1.1;
+  --text-display-sm: clamp(1.625rem, 1.5rem + 0.6vw, 2rem);
+  --text-display-sm--line-height: 1.15;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+
+  --spacing-section: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
+  --spacing-header: 5rem;
+  --container-site: 82rem;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-cormorant), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-dm-sans), "Segoe UI", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
+  }
+
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-laterite);
+    outline-offset: 3px;
+  }
+
+  [data-tone="dark"] :focus-visible {
+    outline-color: var(--color-ivory);
+  }
+
+  ::selection {
+    background-color: var(--color-sage);
+    color: var(--color-cocoa);
+  }
+}
+
+/* The signature woven border, taken from the edge of a kasavu sari. */
+@utility kasavu {
+  --kasavu-colour: var(--color-terracotta);
+  height: 0.75rem;
+  background-image:
+    linear-gradient(var(--kasavu-colour), var(--kasavu-colour)),
+    repeating-linear-gradient(
+      90deg,
+      var(--kasavu-colour) 0 0.5rem,
+      transparent 0.5rem 0.75rem
+    ),
+    linear-gradient(var(--kasavu-colour), var(--kasavu-colour));
+  background-repeat: no-repeat;
+  background-size:
+    100% 3px,
+    100% 3px,
+    100% 1px;
+  background-position: top, center, bottom;
+}
+
+/* A line that draws in from the left on hover and marks the current page. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 0.35s var(--ease-soft);
+
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+}
+
+/* Native dialog: the browser provides the focus trap and the Escape key. */
+.mobile-menu {
+  opacity: 0;
+  transform: translateY(-0.75rem);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s var(--ease-soft),
+    overlay 0.4s allow-discrete,
+    display 0.4s allow-discrete;
+}
+
+.mobile-menu[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .mobile-menu[open] {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
