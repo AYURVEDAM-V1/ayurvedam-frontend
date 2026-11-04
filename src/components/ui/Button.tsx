@@ -3,18 +3,10 @@ import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
-type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "inverse"
-  | "outline-inverse"
-  | "whatsapp";
-
-type ButtonSize = "sm" | "md";
+type ButtonVariant = "primary" | "ghost";
 
 type SharedProps = {
   variant?: ButtonVariant;
-  size?: ButtonSize;
   className?: string;
   children: ReactNode;
 };
@@ -32,21 +24,13 @@ type ButtonAsButton = SharedProps &
 type ButtonProps = ButtonAsLink | ButtonAsButton;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2.5 py-3 text-[0.9375rem] leading-tight font-medium transition-colors duration-300 ease-soft disabled:cursor-not-allowed disabled:opacity-60";
-
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: "min-h-11 px-5",
-  md: "min-h-12 px-6",
-};
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border-[1.5px] px-[1.4rem] py-[0.85rem] text-[0.95rem] leading-[normal] font-bold no-underline transition-[translate,background-color] duration-200";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "bg-laterite text-ivory hover:bg-laterite-deep",
-  secondary:
-    "border border-cocoa text-cocoa hover:bg-cocoa hover:text-ivory",
-  inverse: "bg-ivory text-cocoa hover:bg-sand",
-  "outline-inverse":
-    "border border-ivory/60 text-ivory hover:bg-ivory hover:text-cocoa",
-  whatsapp: "bg-whatsapp text-white hover:bg-whatsapp-deep",
+  primary:
+    "border-transparent bg-turmeric text-turmeric-ink hover:-translate-y-0.5",
+  ghost:
+    "border-current bg-transparent text-inherit hover:bg-[color-mix(in_srgb,currentColor_8%,transparent)]",
 };
 
 /**
@@ -54,22 +38,16 @@ const variantStyles: Record<ButtonVariant, string> = {
  * plain anchor for tel: and external URLs, or a button when there is no href.
  *
  * `className` is for additions such as `w-full`. It cannot override the styles
- * above, because `cn` only joins classes: use `size` and `variant` instead, and
- * wrap the button in an element to show or hide it at a breakpoint.
+ * above, because `cn` only joins classes: wrap the button in an element to
+ * show or hide it at a breakpoint.
  */
 export function Button({
   variant = "primary",
-  size = "md",
   className,
   children,
   ...rest
 }: ButtonProps) {
-  const styles = cn(
-    baseStyles,
-    sizeStyles[size],
-    variantStyles[variant],
-    className,
-  );
+  const styles = cn(baseStyles, variantStyles[variant], className);
 
   if (rest.href === undefined) {
     return (
@@ -100,6 +78,9 @@ export function Button({
       className={styles}
     >
       {children}
+      {opensElsewhere ? (
+        <span className="sr-only"> (opens in a new tab)</span>
+      ) : null}
     </a>
   );
 }

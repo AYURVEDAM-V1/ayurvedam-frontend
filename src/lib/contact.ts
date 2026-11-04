@@ -1,9 +1,11 @@
 import { siteConfig } from "@/config/site";
 
-const { phoneE164, whatsappNumber, whatsappGreeting } = siteConfig.contact;
+const { email, phoneE164, whatsappNumber, whatsappGreeting } = siteConfig.contact;
 
 /** Opens the phone dialer on mobile devices. */
 export const telHref = `tel:${phoneE164}`;
+
+export const mailtoHref = `mailto:${email}`;
 
 /**
  * Opens a WhatsApp chat with the message already typed. The visitor reviews it

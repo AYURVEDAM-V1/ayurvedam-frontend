@@ -1,15 +1,15 @@
 /**
  * The one place for business details. Every phone link, WhatsApp link and
  * contact block on the site reads from here.
- *
- * Fields set to `null` are waiting for the client. Do not invent values: the
- * interface shows an honest placeholder until a real value is added.
  */
 
 type SiteConfig = {
   name: string;
-  tagline: string;
+  shortName: string;
+  descriptor: string;
   description: string;
+  footerBlurb: string;
+  domain: string;
   url: string;
   disclaimer: string;
   contact: {
@@ -17,30 +17,34 @@ type SiteConfig = {
     phoneE164: string;
     whatsappNumber: string;
     whatsappGreeting: string;
-    email: string | null;
-    address: string | null;
-    hours: string | null;
-    mapEmbedUrl: string | null;
+    email: string;
+    addressShort: string;
+    address: string;
+    hours: string;
   };
 };
 
 export const siteConfig: SiteConfig = {
-  name: "AYURVEDAM",
-  tagline: "Panchakarma wellness and traditional Kerala massage",
+  name: "Ayurvedam Wellness",
+  shortName: "Ayurvedam",
+  descriptor: "Panchakarma & Wellness",
   description:
-    "AYURVEDAM offers Panchakarma wellness and traditional Kerala massage, including Abhyanga, Shirodhara and herbal steam. Call or WhatsApp us to enquire about a session.",
+    "Ayurvedam Wellness, Gurugram — authentic Panchakarma programmes, classical Ayurvedic therapies and personalised wellness care.",
+  footerBlurb:
+    "Panchakarma and classical Ayurvedic therapies in Gurugram, guided by a qualified Vaidya and delivered with care.",
+  domain: "ayurvedamwellness.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   disclaimer:
-    "AYURVEDAM offers traditional Ayurvedic wellness therapies. They do not replace medical diagnosis or treatment. Please speak to your doctor about any health condition.",
+    "Ayurvedic therapies support general wellbeing and are not a substitute for medical diagnosis or treatment. Results vary from person to person.",
   contact: {
     phoneDisplay: "+91 99580 01036",
     phoneE164: "+919958001036",
     whatsappNumber: "919958001036",
     whatsappGreeting:
       "Hello AYURVEDAM, I would like to know more about your Ayurvedic therapies and book a wellness session.",
-    email: null,
-    address: null,
-    hours: null,
-    mapEmbedUrl: null,
+    email: "bansal.purshotam@gmail.com",
+    addressShort: "Sector 83, Gurugram",
+    address: "Sector 83, Gurugram, Haryana",
+    hours: "8 am – 8 pm",
   },
 };

@@ -3,23 +3,22 @@ export type NavItem = {
   href: string;
 };
 
-/** Sits to the left of the centred wordmark on large screens. */
-export const navLeft: NavItem[] = [
-  { label: "About", href: "/about" },
-  { label: "Therapies", href: "/therapies" },
-  { label: "Panchakarma", href: "/panchakarma" },
+/** Links start with "/" so they also work from the 404 page. */
+export const primaryNav: NavItem[] = [
+  { label: "Our approach", href: "/#approach" },
+  { label: "Therapies", href: "/#therapies" },
+  { label: "Panchakarma", href: "/#panchakarma" },
+  { label: "Know your dosha", href: "/#prakriti" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
-/** Sits to the right of the centred wordmark on large screens. */
-export const navRight: NavItem[] = [
-  { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/contact" },
+export const bookingHref = "/#book";
+
+export const footerNav: NavItem[] = [
+  { label: "Our approach", href: "/#approach" },
+  { label: "Therapies", href: "/#therapies" },
+  { label: "Panchakarma programmes", href: "/#panchakarma" },
+  { label: "Know your dosha", href: "/#prakriti" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Book a session", href: bookingHref },
 ];
-
-export const primaryNav: NavItem[] = [...navLeft, ...navRight];
-
-export const bookingHref = "/book";
-
-export function isActivePath(pathname: string, href: string): boolean {
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
