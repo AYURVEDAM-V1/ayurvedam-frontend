@@ -258,7 +258,7 @@ export function BookingForm() {
         />
       </Field>
 
-      <div className="col-span-full">
+      <div className="col-span-full max-[901px]:text-center">
         <Button type="submit" disabled={isSubmitting}>
           Prepare my booking request
         </Button>
@@ -280,7 +280,7 @@ export function BookingForm() {
           >
             {message}
           </pre>
-          <div className="flex flex-wrap gap-[0.6rem]">
+          <div className="flex flex-wrap gap-[0.6rem] max-[901px]:justify-center">
             <Button href={whatsappHref(message)}>Open WhatsApp</Button>
             <Button variant="ghost" onClick={copyMessage}>
               Copy message

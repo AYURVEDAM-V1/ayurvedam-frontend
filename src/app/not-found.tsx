@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <Section>
-      <Container>
+      <Container className="max-[901px]:text-center">
         <Eyebrow devanagari="प्रश्न">Page not found</Eyebrow>
         <h1 className="mt-[1.1rem] mb-[1.4rem] text-[clamp(2.5rem,5.6vw,4.4rem)]">
           We could not find that page

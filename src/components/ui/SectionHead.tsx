@@ -23,7 +23,10 @@ export function SectionHead({
   children,
 }: SectionHeadProps) {
   return (
-    <div className={cn("grid gap-4", !flush && "mb-[clamp(32px,5vw,56px)]")}>
+    <div className={cn(
+        "grid gap-4 max-[901px]:text-center",
+        !flush && "mb-[clamp(32px,5vw,56px)]",
+      )}>
       <Eyebrow devanagari={devanagari}>{eyebrow}</Eyebrow>
       <h2>{title}</h2>
       {lead ? <Lead>{lead}</Lead> : null}

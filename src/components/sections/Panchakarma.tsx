@@ -22,14 +22,14 @@ export function Panchakarma() {
           {panchakarmaStages.map((stage) => (
             <div
               key={stage.title}
-              className="relative grid content-start gap-[0.6rem] border-t-2 border-band-fg pt-[2.4rem] before:absolute before:top-[0.7rem] before:text-[0.75rem] before:font-bold before:tracking-[0.14em] before:text-stage-label before:uppercase before:[counter-increment:stage] before:content-['Stage_'_counter(stage)]"
+              className="relative grid content-start gap-[0.6rem] border-t-2 border-band-fg pt-[2.4rem] max-[901px]:text-center max-[901px]:before:inset-x-0 before:absolute before:top-[0.7rem] before:text-[0.75rem] before:font-bold before:tracking-[0.14em] before:text-stage-label before:uppercase before:[counter-increment:stage] before:content-['Stage_'_counter(stage)]"
             >
               <Devanagari className="text-[1.3rem] text-stage-accent">
                 {stage.devanagari}
               </Devanagari>
               <h3>{stage.title}</h3>
               <p className="opacity-80">{stage.summary}</p>
-              <ul className="mt-[0.4rem] grid list-disc gap-[0.3rem] pl-[1.1rem] text-[0.95rem] text-stage-list">
+              <ul className="mt-[0.4rem] grid list-disc gap-[0.3rem] pl-[1.1rem] text-[0.95rem] text-stage-list max-[901px]:mx-auto max-[901px]:w-fit max-[901px]:text-left">
                 {stage.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -43,7 +43,7 @@ export function Panchakarma() {
             <div
               key={programme.title}
               className={cn(
-                "grid grid-rows-[auto_auto_1fr_auto] gap-[0.6rem] rounded-[18px] border-[1.5px] p-[1.4rem]",
+                "grid grid-rows-[auto_auto_1fr_auto] gap-[0.6rem] rounded-[18px] border-[1.5px] p-[1.4rem] max-[901px]:text-center",
                 programme.featured
                   ? "border-band bg-band text-band-fg"
                   : "border-line bg-surface text-ink",

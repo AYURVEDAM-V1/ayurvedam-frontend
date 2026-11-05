@@ -12,7 +12,7 @@ export function Faq() {
           eyebrow="Questions"
           title="Frequently asked"
         />
-        <div className="grid max-w-[860px] border-t border-line">
+        <div className="grid max-w-[860px] border-t border-line max-[901px]:mx-auto">
           {faqs.map((faq) => (
             <details key={faq.question} className="group border-b border-line">
               <summary className="relative cursor-pointer list-none py-[1.15rem] pr-10 font-bold after:absolute after:top-[0.85rem] after:right-[0.3rem] after:font-display after:text-[1.6rem] after:leading-[normal] after:font-normal after:text-copper after:transition-[rotate] after:duration-200 after:content-['+'] group-open:after:rotate-45 [&::-webkit-details-marker]:hidden">

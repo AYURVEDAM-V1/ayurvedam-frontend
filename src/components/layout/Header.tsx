@@ -78,7 +78,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={closeMenu}
-              className="text-[0.95rem] font-medium text-muted hover:text-ink max-[901px]:border-b max-[901px]:border-line max-[901px]:py-3"
+              className="text-[0.95rem] font-medium text-muted hover:text-ink max-[901px]:border-b max-[901px]:border-line max-[901px]:py-3 max-[901px]:text-center"
             >
               {item.label}
             </Link>

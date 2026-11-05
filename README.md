@@ -83,6 +83,8 @@ The colours, fonts and spacing come from the client's template. They are defined
 
 - **Type:** Marcellus for headings, Karla for body text and Tiro Devanagari Hindi for Devanagari.
 - **Contrast:** never use `copper` as text on `band`, or `oil` for small text on `band`. Both are below 4.5:1 in light mode.
+- **Small screens:** at 900px and below, content is centred. FAQ answers, form fields, quiz options and bullet lists stay left-aligned for readability.
+- **Breakpoints:** Tailwind's `max-[901px]` means "below 901px", so use it for 900px and below.
 - **Buttons:** the `className` prop can only add styles, because `cn` joins classes without resolving conflicts. To hide a button at a breakpoint, wrap it in an element.
 
 ## Branches

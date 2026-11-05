@@ -40,7 +40,7 @@ export function DoshaCheck() {
             <strong className="font-display text-[1.5rem] leading-[normal] font-normal">
               {result.heading}
             </strong>
-            <div className="grid gap-[0.7rem]">
+            <div className="grid gap-[0.7rem] max-[901px]:text-left">
               {doshaNames.map((name, index) => (
                 <div
                   key={name}
@@ -67,7 +67,7 @@ export function DoshaCheck() {
         <form aria-label="Dosha questionnaire">
           {doshaQuestions.map((item, questionIndex) => (
             <fieldset key={item.question} className="mb-[1.3rem] min-w-0">
-              <legend className="mb-[0.6rem] font-bold">
+              <legend className="mb-[0.6rem] font-bold max-[901px]:w-full max-[901px]:text-center">
                 {questionIndex + 1}. {item.question}
               </legend>
               <div className="grid grid-cols-3 gap-2 max-[561px]:grid-cols-1">

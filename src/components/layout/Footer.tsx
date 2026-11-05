@@ -24,12 +24,12 @@ export function Footer() {
   return (
     <footer data-tone="band" className="bg-band pt-14 pb-8 text-[0.92rem] text-band-fg">
       <Container>
-        <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-8 max-[761px]:grid-cols-1">
+        <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-8 max-[761px]:grid-cols-1 max-[901px]:text-center">
           <div>
             <p className="font-display text-[1.6rem] leading-[normal]">
               {siteConfig.name}
             </p>
-            <p className="mt-[0.6rem] max-w-[44ch] opacity-80">
+            <p className="mt-[0.6rem] max-w-[44ch] opacity-80 max-[901px]:mx-auto">
               {siteConfig.footerBlurb}
             </p>
             <p className="mt-4 text-[1.2rem] text-oil-text">
@@ -73,7 +73,7 @@ export function Footer() {
         </div>
 
         {/* Below this width, the extra space keeps the text clear of the WhatsApp button. */}
-        <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[1432px]:pb-10">
+        <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[1432px]:pb-10 max-[901px]:justify-center max-[901px]:text-center">
           <p className="max-w-[70ch]">{siteConfig.disclaimer}</p>
           <span>
             © <CurrentYear /> {siteConfig.name} · {siteConfig.domain}

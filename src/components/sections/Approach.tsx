@@ -18,7 +18,7 @@ export function Approach() {
           {principles.map((principle) => (
             <div
               key={principle.title}
-              className="grid content-start gap-2 pt-[1.6rem] pr-[1.4rem]"
+              className="grid content-start gap-2 pt-[1.6rem] pr-[1.4rem] max-[901px]:px-2 max-[901px]:text-center"
             >
               <Devanagari className="text-[1.6rem] text-oil-text">
                 {principle.devanagari}
