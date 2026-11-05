@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/*
+ * AYURVEDAM design tokens, taken from the client's template.
+ *
+ * Colours are CSS variables so that dark mode only has to change them here.
+ * These values were added for readability:
+ * - oil-text: gold text on the green band. The template's oil is 4.38:1 there.
+ * - focus: the keyboard focus ring. Turmeric is only 2.09:1 on the light page.
+ * - stage-*: Panchakarma stage text. The template's light colours are unreadable
+ *   on green, so only the light values differ from it.
+ */
+:root {
+  color-scheme: light;
+  --bg: #f2f4ee;
+  --surface: #ffffff;
+  --band: #1e3a2f;
+  --band-fg: #eef2ea;
+  --fg: #1b2a23;
+  --muted: #56665d;
+  --line: #d4dcd2;
+  --turmeric: #d9a11e;
+  --turmeric-ink: #2a1f05;
+  --copper: #a65a2a;
+  --oil: #c98f2e;
+  --oil-text: #cc9230;
+  --stage-label: #cc9230;
+  --stage-accent: #cc9230;
+  --stage-list: rgb(238 242 234 / 80%);
+  --error: #b3261e;
+  --focus: #a65a2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #111a16;
+    --surface: #17231e;
+    --band: #0b1411;
+    --band-fg: #e6ece4;
+    --fg: #e4eae2;
+    --muted: #a3b2a8;
+    --line: #2a3a32;
+    --turmeric: #e8b43a;
+    --turmeric-ink: #1f1603;
+    --copper: #d9895a;
+    --oil: #e0a84a;
+    --oil-text: #e0a84a;
+    --stage-label: #d9895a;
+    --stage-accent: #a3b2a8;
+    --stage-list: #a3b2a8;
+    --error: #f2b8b5;
+    --focus: #e8b43a;
+  }
+}
+
+@theme inline {
+  --color-page: var(--bg);
+  --color-surface: var(--surface);
+  --color-band: var(--band);
+  --color-band-fg: var(--band-fg);
+  --color-ink: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-turmeric: var(--turmeric);
+  --color-turmeric-ink: var(--turmeric-ink);
+  --color-copper: var(--copper);
+  --color-oil: var(--oil);
+  --color-oil-text: var(--oil-text);
+  --color-stage-label: var(--stage-label);
+  --color-stage-accent: var(--stage-accent);
+  --color-stage-list: var(--stage-list);
+  --color-error: var(--error);
+
+  --font-display: var(--font-marcellus), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-karla), "Segoe UI", system-ui, sans-serif;
+  --font-deva: var(--font-tiro), "Noto Serif Devanagari", serif;
+}
+
+@theme {
+  --spacing-section: clamp(56px, 8vw, 104px);
+
+  --animate-fall: fall 2.6s cubic-bezier(0.5, 0, 0.8, 0.6) infinite;
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(118px);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /*
+     * Just under the sticky header's height: no sliver of the previous section
+     * shows, and nothing at the top of a section is hidden. The header's labels
+     * wrap onto two lines at the two widths below, as they do in the template.
+     */
+    scroll-padding-top: 4.625rem;
+
+    @media (width < 352px) {
+      scroll-padding-top: 5.625rem;
+    }
+
+    @media (901px <= width < 1014px) {
+      scroll-padding-top: 5.875rem;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  [data-tone="band"] :focus-visible {
+    outline-color: var(--turmeric);
+  }
+
+  /* The form card is white inside a green band. */
+  [data-tone="card"] :focus-visible {
+    outline-color: var(--focus);
+  }
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+
+  @media (min-width: 720px) {
+    padding-left: max(32px, env(safe-area-inset-left, 0px));
+    padding-right: max(32px, env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
