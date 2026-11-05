@@ -72,8 +72,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Below this width, the extra space keeps the text clear of the WhatsApp button. */}
-        <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[1432px]:pb-10 max-[901px]:justify-center max-[901px]:text-center">
+        {/* The extra space keeps this text clear of the floating contact buttons. */}
+        <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[901px]:justify-center max-[901px]:pb-10 max-[901px]:text-center min-[901px]:max-[1520px]:pb-24">
           <p className="max-w-[70ch]">{siteConfig.disclaimer}</p>
           <span>
             © <CurrentYear /> {siteConfig.name} · {siteConfig.domain}

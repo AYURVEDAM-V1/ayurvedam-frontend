@@ -35,7 +35,7 @@ src/
 ├── app/                The page, root layout, styles, sitemap and robots file
 ├── components/
 │   ├── booking/        The enquiry form and the links that preselect a service
-│   ├── layout/         Top bar, header, footer and floating WhatsApp button
+│   ├── layout/         Top bar, header, footer and floating contact buttons
 │   ├── sections/       One component for each section of the page
 │   └── ui/             Small reusable pieces such as Button and Section
 ├── config/             Business details and navigation
