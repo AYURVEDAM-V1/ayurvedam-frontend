@@ -62,12 +62,14 @@ export function Header() {
           Menu
         </button>
 
+        {/* The max height allows for the top bar too, so on a phone held sideways
+            the last link can still be scrolled into view at the top of the page. */}
         <nav
           ref={panelRef}
           id="nav-links"
           aria-label="Main"
           className={cn(
-            "items-center gap-[1.6rem] min-[901px]:flex max-[901px]:absolute max-[901px]:inset-x-0 max-[901px]:top-full max-[901px]:max-h-[calc(100dvh-5rem)] max-[901px]:flex-col max-[901px]:items-stretch max-[901px]:gap-0 max-[901px]:overflow-y-auto max-[901px]:border-b max-[901px]:border-line max-[901px]:bg-page max-[901px]:px-4 max-[901px]:pt-2 max-[901px]:pb-4",
+            "items-center gap-[1.6rem] min-[901px]:flex max-[901px]:absolute max-[901px]:inset-x-0 max-[901px]:top-full max-[901px]:max-h-[calc(100dvh-10.5rem)] max-[901px]:flex-col max-[901px]:items-stretch max-[901px]:gap-0 max-[901px]:overflow-y-auto max-[901px]:border-b max-[901px]:border-line max-[901px]:bg-page max-[901px]:px-4 max-[901px]:pt-2 max-[901px]:pb-4",
             isOpen ? "flex" : "hidden",
           )}
         >
