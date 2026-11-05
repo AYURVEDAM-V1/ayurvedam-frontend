@@ -153,7 +153,7 @@ export const therapies: Therapy[] = [
     description:
       "Warm oil and steady, flowing strokes, following the Ayurvedic massage tradition.",
     category: "relax",
-    duration: null,
+    duration: "60 min",
   },
   {
     devanagari: "केरल मालिश",
@@ -162,11 +162,11 @@ export const therapies: Therapy[] = [
     description:
       "Long, rhythmic strokes with warm oils, in the style of Kerala's massage tradition.",
     category: "relax",
-    duration: null,
+    duration: "60 min",
   },
 ];
 
-/** The options for "Interested in", as supplied by the client. */
+/** The options for "Interested in", as confirmed by the client. */
 export const interestOptions: string[] = [
   "Consultation with Vaidya",
   "Abhyanga",
@@ -176,6 +176,12 @@ export const interestOptions: string[] = [
   "Kati / Greeva / Janu Basti",
   "Nasya",
   "Netra Tarpana",
+  "Patra Pinda Sweda",
+  "Swedana",
+  "Mukha Lepam",
+  "Shiro Abhyanga",
+  "Ayurvedic Massage",
+  "Traditional Kerala Massage",
   "3-day Weekend Reset",
   "7-day Seasonal Cleanse",
   "14-day Deep Panchakarma",
