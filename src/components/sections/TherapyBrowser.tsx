@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
+import { Button } from "@/components/ui/Button";
 import { Devanagari } from "@/components/ui/Devanagari";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import {
   categoryLabels,
   therapies,
@@ -10,13 +12,15 @@ import {
   type Therapy,
   type TherapyFilter,
 } from "@/data/therapies";
+import { buildTherapyMessage } from "@/lib/booking";
 import { cn } from "@/lib/cn";
+import { whatsappHref } from "@/lib/contact";
 
 function TherapyCard({ therapy, hidden }: { therapy: Therapy; hidden: boolean }) {
   return (
     <article
       hidden={hidden}
-      className="grid min-w-0 grid-rows-[auto_auto_1fr_auto] gap-[0.55rem] bg-surface p-[1.6rem] shadow-[0_0_0_1px_var(--line)] max-[901px]:text-center"
+      className="grid min-w-0 grid-rows-[auto_auto_1fr_auto_auto] gap-[0.55rem] bg-surface p-[1.6rem] shadow-[0_0_0_1px_var(--line)] max-[901px]:text-center"
     >
       <Devanagari className="text-[1.25rem] leading-none text-copper">
         {therapy.devanagari}
@@ -32,6 +36,14 @@ function TherapyCard({ therapy, hidden }: { therapy: Therapy; hidden: boolean })
         </span>
         {therapy.duration ? <span>{therapy.duration}</span> : null}
       </div>
+      <Button
+        href={whatsappHref(buildTherapyMessage(therapy))}
+        aria-label={`Book Now: ${therapy.name} on WhatsApp (opens in a new tab)`}
+        className="mt-2 w-full justify-center"
+      >
+        <WhatsAppIcon className="size-5" />
+        Book Now
+      </Button>
     </article>
   );
 }
