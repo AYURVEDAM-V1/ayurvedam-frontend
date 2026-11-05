@@ -61,7 +61,7 @@ The health wording should be approved by a qualified practitioner before the sit
 
 ## Booking enquiries
 
-There is no backend. The form prepares a WhatsApp message, and the visitor reviews and sends it themselves. Nothing is stored or sent by the site, so the form must never say that a session is booked.
+There is no backend. The form prepares a WhatsApp message, and the visitor reviews and sends it themselves. Each therapy card's Book Now button opens WhatsApp the same way, with that therapy's details filled in. Nothing is stored or sent by the site, so neither one must ever say that a session is booked.
 
 ## Design tokens
 

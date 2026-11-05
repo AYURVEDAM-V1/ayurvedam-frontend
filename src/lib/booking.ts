@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { siteConfig } from "@/config/site";
+import type { Therapy } from "@/data/therapies";
 
 export const preferredTimes = [
   "Morning (8–11 am)",
@@ -72,6 +73,19 @@ export function buildBookingMessage(values: BookingValues): string {
   ];
 
   if (values.note) lines.push(`Note: ${values.note}`);
+
+  return lines.join("\n");
+}
+
+/** Builds the text behind a therapy card's Book Now button. */
+export function buildTherapyMessage(therapy: Therapy): string {
+  const lines = [
+    `Namaste ${siteConfig.name},`,
+    `I would like to book: ${therapy.name} (${therapy.subtitle})`,
+  ];
+
+  if (therapy.duration) lines.push(`Session length: ${therapy.duration}`);
+  lines.push("Please share the available dates and times.");
 
   return lines.join("\n");
 }
