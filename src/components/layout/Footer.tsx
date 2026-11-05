@@ -1,6 +1,7 @@
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 
+import { Address } from "@/components/ui/Address";
 import { Container } from "@/components/ui/Container";
 import { Devanagari } from "@/components/ui/Devanagari";
 import { footerNav } from "@/config/navigation";
@@ -56,7 +57,9 @@ export function Footer() {
           <div>
             <h2 className={headingStyles}>Contact</h2>
             <ul className="grid gap-[0.4rem]">
-              <li>{contact.address}</li>
+              <li>
+                <Address />
+              </li>
               <li>
                 <a href={telHref} className={linkStyles}>
                   {contact.phoneDisplay}

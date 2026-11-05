@@ -19,7 +19,7 @@ type SiteConfig = {
     whatsappGreeting: string;
     email: string;
     addressShort: string;
-    address: string;
+    addressLines: string[];
     hours: string;
   };
 };
@@ -37,14 +37,18 @@ export const siteConfig: SiteConfig = {
   disclaimer:
     "Ayurvedic therapies support general wellbeing and are not a substitute for medical diagnosis or treatment. Results vary from person to person.",
   contact: {
-    phoneDisplay: "+91 99580 01036",
-    phoneE164: "+919958001036",
-    whatsappNumber: "919958001036",
+    phoneDisplay: "+91 92205 60070",
+    phoneE164: "+919220560070",
+    whatsappNumber: "919220560070",
     whatsappGreeting:
       "Hello Ayurvedam Wellness, I would like to know more about your Ayurvedic therapies and book a wellness session.",
-    email: "bansal.purshotam@gmail.com",
-    addressShort: "Sector 83, Gurugram",
-    address: "Sector 83, Gurugram, Haryana",
+    email: "ayurvedam64@gmail.com",
+    addressShort: "Sector 64, Gurugram",
+    addressLines: [
+      "2nd Floor, Ayurvedam Panchkarma Wellness,",
+      "R R Market, opposite M3M URBANA,",
+      "Sector 64, Gurugram, Haryana 122101",
+    ],
     hours: "8 am – 8 pm",
   },
 };

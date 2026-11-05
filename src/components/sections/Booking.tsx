@@ -1,4 +1,5 @@
 import { BookingForm } from "@/components/booking/BookingForm";
+import { Address } from "@/components/ui/Address";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -41,7 +42,7 @@ export function Booking() {
           </Lead>
           <dl className="mt-[1.8rem] grid gap-[1.1rem]">
             <ContactRow label="Address">
-              {siteConfig.name}, {contact.address}
+              <Address />
             </ContactRow>
             <ContactRow label="Phone & WhatsApp">
               <a href={telHref}>{contact.phoneDisplay}</a>
