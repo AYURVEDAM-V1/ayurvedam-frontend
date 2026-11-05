@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Karla, Marcellus, Tiro_Devanagari_Hindi } from "next/font/google";
 
-import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { FloatingContact } from "@/components/layout/FloatingContact";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
-        <FloatingWhatsApp />
+        <FloatingContact />
       </body>
     </html>
   );
