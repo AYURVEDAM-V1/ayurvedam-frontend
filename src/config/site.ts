@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
     phoneE164: "+919958001036",
     whatsappNumber: "919958001036",
     whatsappGreeting:
-      "Hello AYURVEDAM, I would like to know more about your Ayurvedic therapies and book a wellness session.",
+      "Hello Ayurvedam Wellness, I would like to know more about your Ayurvedic therapies and book a wellness session.",
     email: "bansal.purshotam@gmail.com",
     addressShort: "Sector 83, Gurugram",
     address: "Sector 83, Gurugram, Haryana",
