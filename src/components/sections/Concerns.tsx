@@ -14,7 +14,7 @@ export function Concerns() {
           title="Supportive care for everyday concerns"
           lead="Our therapies complement, and never replace, the care of your doctor. Please bring your current reports and medicines to the first consultation."
         />
-        <div className="flex flex-wrap gap-[0.6rem]">
+        <div className="flex flex-wrap gap-[0.6rem] max-[901px]:justify-center">
           {concerns.map((concern) => (
             <span
               key={concern.label}

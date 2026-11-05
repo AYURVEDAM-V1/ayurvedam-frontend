@@ -14,7 +14,10 @@ export function FirstVisit() {
         />
         <div className="grid grid-cols-4 gap-6 max-[901px]:grid-cols-2 max-[521px]:grid-cols-1">
           {visitSteps.map((step, index) => (
-            <div key={step.title} className="grid content-start gap-2">
+            <div
+              key={step.title}
+              className="grid content-start gap-2 max-[901px]:text-center"
+            >
               <span className="font-display text-[2.2rem] leading-none text-copper tabular-nums">
                 {index + 1}
               </span>

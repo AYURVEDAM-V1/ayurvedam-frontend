@@ -16,7 +16,7 @@ function TherapyCard({ therapy, hidden }: { therapy: Therapy; hidden: boolean })
   return (
     <article
       hidden={hidden}
-      className="grid min-w-0 grid-rows-[auto_auto_1fr_auto] gap-[0.55rem] bg-surface p-[1.6rem] shadow-[0_0_0_1px_var(--line)]"
+      className="grid min-w-0 grid-rows-[auto_auto_1fr_auto] gap-[0.55rem] bg-surface p-[1.6rem] shadow-[0_0_0_1px_var(--line)] max-[901px]:text-center"
     >
       <Devanagari className="text-[1.25rem] leading-none text-copper">
         {therapy.devanagari}
@@ -47,7 +47,7 @@ export function TherapyBrowser() {
       <div
         role="group"
         aria-label="Filter therapies"
-        className="mb-[1.8rem] flex flex-wrap gap-2"
+        className="mb-[1.8rem] flex flex-wrap gap-2 max-[901px]:justify-center"
       >
         {therapyFilters.map((filter) => (
           <button

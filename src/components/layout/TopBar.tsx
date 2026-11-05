@@ -7,7 +7,7 @@ const { contact } = siteConfig;
 export function TopBar() {
   return (
     <div data-tone="band" className="bg-band text-[0.85rem] text-band-fg">
-      <Container className="flex flex-wrap justify-between gap-x-6 gap-y-[0.4rem] py-2 opacity-90">
+      <Container className="flex flex-wrap justify-between gap-x-6 gap-y-[0.4rem] py-2 opacity-90 max-[901px]:justify-center max-[901px]:text-center">
         <span>
           {contact.addressShort} · Open daily {contact.hours}
         </span>

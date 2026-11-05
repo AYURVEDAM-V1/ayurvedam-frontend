@@ -21,7 +21,7 @@ export function Hero() {
   return (
     <section className="pt-[clamp(40px,6vw,80px)] pb-[clamp(56px,7vw,96px)]">
       <Container className="grid grid-cols-[1.15fr_0.85fr] items-center gap-[clamp(32px,5vw,72px)] max-[901px]:grid-cols-1">
-        <div>
+        <div className="max-[901px]:text-center">
           <Eyebrow devanagari="स्वास्थ्य">
             Ayurvedic wellness centre · Gurugram
           </Eyebrow>
@@ -35,13 +35,13 @@ export function Hero() {
             consultation, so your oils, herbs and routine are chosen for your
             body, not for a menu.
           </Lead>
-          <div className="mt-8 flex flex-wrap gap-[0.8rem]">
+          <div className="mt-8 flex flex-wrap gap-[0.8rem] max-[901px]:justify-center">
             <Button href={bookingHref}>Book a consultation →</Button>
             <Button href="/#panchakarma" variant="ghost">
               Explore Panchakarma
             </Button>
           </div>
-          <div className="mt-[2.2rem] flex flex-wrap gap-x-[1.6rem] gap-y-[0.6rem] text-[0.9rem] text-muted">
+          <div className="mt-[2.2rem] flex flex-wrap gap-x-[1.6rem] gap-y-[0.6rem] text-[0.9rem] text-muted max-[901px]:justify-center">
             <TrustItem>BAMS-qualified Vaidya on site</TrustItem>
             <TrustItem>Trained Kerala therapists</TrustItem>
             <TrustItem>Oils prepared fresh in-house</TrustItem>
@@ -55,11 +55,11 @@ export function Hero() {
 
         <figure
           data-tone="band"
-          className="relative min-w-0 overflow-hidden rounded-[28px_28px_120px_28px] bg-band p-7 text-band-fg"
+          className="relative min-w-0 overflow-hidden rounded-[28px_28px_120px_28px] bg-band p-7 text-band-fg max-[901px]:mx-auto max-[901px]:w-full max-[901px]:max-w-[440px]"
         >
           <DharaIllustration />
           {/* The right padding keeps the last line clear of the rounded corner. */}
-          <figcaption className="mt-2 pr-4 text-[0.9rem]">
+          <figcaption className="mt-2 pr-4 text-[0.9rem] max-[901px]:pl-4 max-[901px]:text-center">
             <Devanagari className="mr-[0.4rem] text-[1.05rem] text-oil-text">
               शिरोधारा
             </Devanagari>{" "}

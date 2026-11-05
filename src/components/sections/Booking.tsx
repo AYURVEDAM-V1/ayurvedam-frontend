@@ -31,7 +31,7 @@ export function Booking() {
   return (
     <Section tone="band" id="book">
       <Container className="grid grid-cols-[0.85fr_1.15fr] gap-[clamp(32px,5vw,64px)] max-[901px]:grid-cols-1">
-        <div>
+        <div className="max-[901px]:text-center">
           <Eyebrow devanagari="स्वागतम्">Visit us</Eyebrow>
           <h2 className="mt-4">Book your consultation</h2>
           <Lead className="mt-4">
@@ -51,7 +51,7 @@ export function Booking() {
             </ContactRow>
             <ContactRow label="Hours">Every day, {contact.hours}</ContactRow>
           </dl>
-          <div className="mt-[1.8rem] flex flex-wrap gap-[0.6rem]">
+          <div className="mt-[1.8rem] flex flex-wrap gap-[0.6rem] max-[901px]:justify-center">
             <Button href={telHref}>Call Now</Button>
             <Button href={whatsappHref()} variant="ghost">
               <WhatsAppIcon className="size-5" />
