@@ -68,8 +68,8 @@ function localToday(): string {
 
 /**
  * There is no backend yet, so this form only prepares a WhatsApp message. The
- * visitor reviews it and sends it themselves. Nothing leaves this page until
- * they do, so the form must never say that a session is booked.
+ * visitor reviews it and sends it themselves. The business receives nothing
+ * until they do, so the form must never say that a session is booked.
  */
 export function BookingForm() {
   const { selection } = useBooking();
@@ -287,7 +287,7 @@ export function BookingForm() {
             </Button>
           </div>
           <p className="text-muted">
-            Nothing is sent until you press send in WhatsApp.
+            Your request reaches us only after you press send in WhatsApp.
           </p>
           <small role="status" className="text-muted">
             {copyNote}
