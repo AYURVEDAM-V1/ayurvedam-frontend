@@ -59,7 +59,7 @@ export function TherapyBrowser() {
       <div
         role="group"
         aria-label="Filter therapies"
-        className="mb-[1.8rem] flex flex-wrap gap-2 max-[901px]:justify-center"
+        className="mb-4 flex flex-wrap gap-2 max-[901px]:justify-center"
       >
         {therapyFilters.map((filter) => (
           <button
@@ -78,6 +78,16 @@ export function TherapyBrowser() {
           </button>
         ))}
       </div>
+
+      {/* Each sentence stays whole, so phones break the line between them. */}
+      <p className="mb-[1.8rem] text-[0.9rem] text-balance text-muted max-[901px]:text-center">
+        <span className="inline-block">
+          Book Now opens WhatsApp with your therapy filled in.
+        </span>{" "}
+        <span className="inline-block">
+          Your request reaches us when you press send.
+        </span>
+      </p>
 
       <p role="status" className="sr-only">
         Showing {therapies.filter(isVisible).length} therapies
