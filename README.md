@@ -53,6 +53,7 @@ src/
 - **Panchakarma:** [src/data/panchakarma.ts](src/data/panchakarma.ts).
 - **Dosha questions:** [src/data/dosha.ts](src/data/dosha.ts).
 - **FAQ and other home page text:** [src/data/home.ts](src/data/home.ts).
+- **Share image:** [src/app/opengraph-image.png](src/app/opengraph-image.png) is the picture shown when the link is shared on WhatsApp or social media. Keep it 1200 × 630 px and under 300 KB, and update [opengraph-image.alt.txt](src/app/opengraph-image.alt.txt) to describe it. It shows the address and opening hours, so replace it if those change.
 
 The website address is `NEXT_PUBLIC_SITE_URL` in [.env.production](.env.production). It is written into the canonical link, sharing tags, `sitemap.xml` and `robots.txt` at build time, so rebuild after changing it. If you switch to the `www` address, also remove the "without www" rule in [public/.htaccess](public/.htaccess).
 
