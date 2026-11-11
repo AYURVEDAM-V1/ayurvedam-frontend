@@ -4,6 +4,8 @@ Frontend for the AYURVEDAM website: Panchakarma wellness and traditional Kerala 
 
 The site is one long page based on the template the client created. It is built with Next.js (App Router), React, TypeScript, Tailwind CSS, React Hook Form and Zod.
 
+It is a **static site**: `npm run build` writes plain HTML, CSS and JavaScript to `out/`, which is hosted on Hostinger shared hosting. There is no Node.js server in production.
+
 ## Local setup
 
 You need [Node.js](https://nodejs.org/) 20.9 or newer (22 LTS or later is recommended) and npm.
@@ -12,7 +14,6 @@ You need [Node.js](https://nodejs.org/) 20.9 or newer (22 LTS or later is recomm
 git clone https://github.com/AYURVEDAM-V1/ayurvedam-frontend.git
 cd ayurvedam-frontend
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
@@ -23,14 +24,16 @@ Then open <http://localhost:3000>.
 | Command             | What it does                                |
 | ------------------- | ------------------------------------------- |
 | `npm run dev`       | Starts the development server               |
-| `npm run build`     | Creates the production build                |
-| `npm run start`     | Serves the production build                 |
+| `npm run build`     | Builds the static site into `out/`          |
+| `npm run start`     | Serves `out/` locally to check the build    |
 | `npm run lint`      | Checks the code with ESLint                 |
 | `npm run typecheck` | Generates route types and checks TypeScript |
 
 ## Project structure
 
 ```text
+public/.htaccess        HTTPS, 404 page and caching rules for Hostinger
+scripts/preview.mjs     Local server for out/, used by `npm run start`
 src/
 ├── app/                The page, root layout, styles, sitemap and robots file
 ├── components/
@@ -51,7 +54,20 @@ src/
 - **Dosha questions:** [src/data/dosha.ts](src/data/dosha.ts).
 - **FAQ and other home page text:** [src/data/home.ts](src/data/home.ts).
 
-Before going live, set `NEXT_PUBLIC_SITE_URL` to the real website address. Canonical links, sharing tags and the sitemap depend on it.
+The website address is `NEXT_PUBLIC_SITE_URL` in [.env.production](.env.production). It is written into the canonical link, sharing tags, `sitemap.xml` and `robots.txt` at build time, so rebuild after changing it. If you switch to the `www` address, also remove the "without www" rule in [public/.htaccess](public/.htaccess).
+
+## Deploying to Hostinger
+
+1. Run `npm run build`. It creates the `out/` folder.
+2. Optional: run `npm run start` and open <http://localhost:3000> to check the build.
+3. In hPanel, open **Websites → Manage → Security → SSL** and make sure the SSL certificate is active. The `.htaccess` file sends every visitor to HTTPS.
+4. Open **Files → File Manager → public_html**. Delete the old site files, including Hostinger's `default.php` if it is there.
+5. Upload everything **inside** `out/`, not the `out` folder itself. `index.html`, `.htaccess` and the `_next` folder must sit directly in `public_html`. It is easiest to zip the contents of `out/`, upload the zip and use **Extract**.
+6. Open the site and press Ctrl+F5 to skip the browser cache.
+
+To publish a change, repeat these steps. Upload the whole of `out/` each time, because file names in `_next/` change with every build.
+
+Static hosting has no server, so features that need one cannot be used: Server Actions, Route Handlers that read the request, `cookies()`, `headers()`, `next/image` optimisation, and `rewrites`, `redirects` or `headers` in `next.config.ts`. Put server rules in `public/.htaccess` instead.
 
 ## Content rules
 
