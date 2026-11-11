@@ -17,6 +17,8 @@ coverage/
 .env
 .env.*
 !.env.example
+# Holds only the public website address, needed for the static build
+!.env.production
 
 # Logs
 npm-debug.log*

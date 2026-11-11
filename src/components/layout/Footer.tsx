@@ -1,6 +1,6 @@
-import { cacheLife } from "next/cache";
 import Link from "next/link";
 
+import { CurrentYear } from "@/components/layout/CurrentYear";
 import { Address } from "@/components/ui/Address";
 import { Container } from "@/components/ui/Container";
 import { Devanagari } from "@/components/ui/Devanagari";
@@ -14,12 +14,6 @@ const headingStyles =
   "mb-[0.8rem] font-sans text-[0.75rem] font-bold tracking-[0.14em] uppercase opacity-70";
 
 const linkStyles = "opacity-85 hover:opacity-100";
-
-async function CurrentYear() {
-  "use cache";
-  cacheLife("days");
-  return <>{new Date().getFullYear()}</>;
-}
 
 export function Footer() {
   return (
@@ -79,7 +73,8 @@ export function Footer() {
         <div className="mt-10 flex flex-wrap justify-between gap-4 border-t border-band-fg/18 pt-5 text-[0.82rem] opacity-70 max-[901px]:justify-center max-[901px]:pb-10 max-[901px]:text-center min-[901px]:max-[1520px]:pb-24">
           <p className="max-w-[70ch]">{siteConfig.disclaimer}</p>
           <span>
-            © <CurrentYear /> {siteConfig.name} · {siteConfig.domain}
+            © <CurrentYear buildYear={new Date().getFullYear()} />{" "}
+            {siteConfig.name} · {siteConfig.domain}
           </span>
         </div>
       </Container>
